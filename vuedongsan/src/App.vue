@@ -2,9 +2,9 @@
 
   <div class="black-bg" v-if="showModal">
     <div class="white-bg">
-      <h4>상세페이지 입니다.</h4>
-      <p> 상세페이지 내용입니다.</p>
-      <button @click="showModal = 'false';">닫기</button>
+      <h4>{{rooms[clickProduct].title}}</h4>
+      <p> {{rooms[clickProduct].content}}</p>
+      <button @click="showModal = false;">닫기</button>
     </div>
   </div>
 
@@ -14,14 +14,16 @@
 
 
 
-  <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="showModal = 'true';">{{products[0]}}</h4>
-    <p>{{ prices[0] }} 만원</p>
-    <button @click="numberOfReports[0]++;">허위매물신고</button> 
-    <span>신고수 : {{numberOfReports[0]}}</span>
+  <div v-for="(room,i) in rooms" :key="i">
+    <img :src="room.image" class="room-img">
+    <h4 @click="
+      showModal = true;
+      clickProduct = i;
+    ">{{room.title}}</h4>
+    <p>{{ room.price }} 만원</p>
   </div>
-  <div>
+
+  <!-- <div>
     <img src="./assets/room1.jpg" class="room-img">
     <h4>{{products[1]}}</h4>
     <p>{{ prices[1] }} 만원</p>
@@ -34,16 +36,20 @@
     <p>{{ prices[2]}} 만원</p>
     <button @click="numberOfReports[2]++;">허위매물신고</button> 
     <span>신고수 : {{numberOfReports[2]}}</span>
-  </div>
+  </div> -->
 
 </template>
 
 
 <script>
+import data from './data';
+
 export default {
   name: 'App',
   data(){
     return {
+      clickProduct : 0,
+      rooms : data,
       showModal : false, 
       menus : ['Home','Shop','About'],
       products : ['역삼동원룸','천호동원룸','마포구원룸'],
