@@ -1,27 +1,17 @@
 <template>
 
-  <div class="black-bg" v-if="showModal">
-    <div class="white-bg">
-      <h4>{{rooms[clickProduct].title}}</h4>
-      <p> {{rooms[clickProduct].content}}</p>
-      <button @click="showModal = false;">닫기</button>
-    </div>
-  </div>
+  <Modal :rooms="rooms" :clickProduct="clickProduct" :showModal="showModal" />
 
   <div class="menu">
     <a v-for="a in menus" :key="a">{{ a }}</a>
   </div>
 
+  <Discount  />
+
+  <Card :rooms="rooms[i]" v-for="room,i in rooms" :key="room" />
 
 
-  <div v-for="(room,i) in rooms" :key="i">
-    <img :src="room.image" class="room-img">
-    <h4 @click="
-      showModal = true;
-      clickProduct = i;
-    ">{{room.title}}</h4>
-    <p>{{ room.price }} 만원</p>
-  </div>
+  
 
   <!-- <div>
     <img src="./assets/room1.jpg" class="room-img">
@@ -43,6 +33,9 @@
 
 <script>
 import data from './data';
+import Discount from './Discount.vue';
+import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
@@ -63,7 +56,9 @@ export default {
     },
   },
   components: {
-
+    Discount : Discount,
+    Modal : Modal,
+    Card : Card,
   }
 }
 </script>
@@ -75,6 +70,12 @@ body {
 }
 div {
   box-sizing: border-box;
+}
+.discount {
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
 }
 .black-bg {
   width: 100%;
