@@ -19,6 +19,15 @@ export default {
       month : 1,
     }
   },
+  // 데이터감시
+  watch : {
+    month(a){
+      if ( typeof(a) == 'string' ){
+        alert('숫자만 입력하세요.');
+        this.month = 1;
+      }
+    }
+  },
   props : {
     rooms : Array,
     clickProduct : Number,
