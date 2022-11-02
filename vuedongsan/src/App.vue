@@ -15,7 +15,10 @@
     <a v-for="a in menus" :key="a">{{ a }}</a>
   </div>
 
-  <Discount/>
+  <Discount 
+    v-if="showDiscount == true"
+    :count="count"
+  />
 
   <button @click="priceSort">가격순정렬</button>
   <button @click="sortBack">되돌리기</button>
@@ -34,10 +37,14 @@ import Discount from './Discount.vue';
 import Modal from './Modal.vue';
 import Card from './Card.vue';
 
+
+
 export default {
   name: 'App',
   data(){
     return {
+      count : 5,
+      showDiscount : true,
       roomsOrigin : [...data],
       clickProduct : 0,
       rooms : data,
@@ -61,6 +68,15 @@ export default {
       this.rooms = [...this.roomsOrigin];
     },
   },
+  mounted(){
+    let timer = setInterval(()=>{
+      this.count --;
+      if(this.count == 0){
+        clearInterval(timer)
+      }
+    },1000)
+  },
+
   components: {
     Discount : Discount,
     Modal : Modal,
