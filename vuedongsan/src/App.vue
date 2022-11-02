@@ -1,11 +1,15 @@
 <template>
 
-  <Modal
-    @closeModal="showModal = false"
-    :rooms="rooms" 
-    :clickProduct="clickProduct" 
-    :showModal="showModal" 
-  />
+<!-- vue에서 애니메이션 주고 싶은 요소는 <transition> -->
+
+  <Transition name="fade">
+    <Modal
+      @closeModal="showModal = false"
+      :rooms="rooms" 
+      :clickProduct="clickProduct" 
+      :showModal="showModal" 
+    />
+  </Transition>
 
   <div class="menu">
     <a v-for="a in menus" :key="a">{{ a }}</a>
@@ -17,24 +21,6 @@
     @openModal="showModal = true; clickProduct = $event"
     :rooms="rooms[i]" 
     v-for="room,i in rooms" :key="room" />
-
-
-  
-
-  <!-- <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{products[1]}}</h4>
-    <p>{{ prices[1] }} 만원</p>
-    <button @click="numberOfReports[1]++;">허위매물신고</button> 
-    <span>신고수 : {{numberOfReports[1]}}</span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{products[2]}}</h4>
-    <p>{{ prices[2]}} 만원</p>
-    <button @click="numberOfReports[2]++;">허위매물신고</button> 
-    <span>신고수 : {{numberOfReports[2]}}</span>
-  </div> -->
 
 </template>
 
@@ -78,6 +64,33 @@ body {
 }
 div {
   box-sizing: border-box;
+}
+.fade-enter-from {
+  transform: translateY(-1000px);
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  transform: translateY(0px);
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+.end {
+  opacity: 1;
 }
 .discount {
   background: #eee;
