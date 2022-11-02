@@ -17,6 +17,9 @@
 
   <Discount/>
 
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
   <Card 
     @openModal="showModal = true; clickProduct = $event"
     :rooms="rooms[i]" 
@@ -35,6 +38,7 @@ export default {
   name: 'App',
   data(){
     return {
+      roomsOrigin : [...data],
       clickProduct : 0,
       rooms : data,
       showModal : false, 
@@ -47,6 +51,14 @@ export default {
   methods: {
     increase(i){
       this.numberOfReports[i] ++;
+    },
+    priceSort(){
+      this.rooms.sort(function(a,b){
+        return a.price - b.price;
+      });
+    },
+    sortBack(){
+      this.rooms = [...this.roomsOrigin];
     },
   },
   components: {
@@ -85,13 +97,13 @@ div {
   opacity: 0;
 }
 
-.start {
+/* .start {
   opacity: 0;
   transition: all 1s;
 }
 .end {
   opacity: 1;
-}
+} */
 .discount {
   background: #eee;
   padding: 10px;
