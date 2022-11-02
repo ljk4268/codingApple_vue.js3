@@ -1,14 +1,22 @@
 <template>
 
-  <Modal :rooms="rooms" :clickProduct="clickProduct" :showModal="showModal" />
+  <Modal
+    @closeModal="showModal = false"
+    :rooms="rooms" 
+    :clickProduct="clickProduct" 
+    :showModal="showModal" 
+  />
 
   <div class="menu">
     <a v-for="a in menus" :key="a">{{ a }}</a>
   </div>
 
-  <Discount  />
+  <Discount/>
 
-  <Card :rooms="rooms[i]" v-for="room,i in rooms" :key="room" />
+  <Card 
+    @openModal="showModal = true; clickProduct = $event"
+    :rooms="rooms[i]" 
+    v-for="room,i in rooms" :key="room" />
 
 
   
