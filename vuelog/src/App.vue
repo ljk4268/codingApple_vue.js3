@@ -24,12 +24,17 @@
     </div>
   </nav>
 
-  <List :blogDatas="blogDatas"/>
+  <router-link to="detail"></router-link>
+  
+  <div class="mt-4">
+    <router-view :blogDatas="blogDatas"></router-view>
+  </div>
+
+  <!-- <List :blogDatas="blogDatas"/> -->
 
 </template>
 
 <script>
-  import List from './components/List.vue';
   import blogData from './assets/blog';
 
 export default {
@@ -40,7 +45,7 @@ export default {
     }
   },
   components : {
-    List : List,
+
   }
   
 }
