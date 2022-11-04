@@ -1,27 +1,31 @@
 <template>
   <div class="post">
     <div class="post-header">
-      <div class="profile" :style="{backgroundImage : `url(${instaDatas.userImage})`}">></div>
-      <span class="profile-name">{{instaDatas.name}}</span>
+      <div 
+        class="profile"
+        :style="{backgroundImage: `url(${instaData.userImage})`}"
+        ></div>
+      <span class="profile-name">{{instaData.name}}</span>
     </div>
-    <div class="post-body" 
-      :style="{backgroundImage : `url(${instaDatas.postImage})`}">
-    </div>
+    <div 
+      class="post-body"
+      :style="{backgroundImage: `url(${instaData.postImage})`}"
+      ></div>
     <div class="post-content">
-      <p>{{instaDatas.likes}}</p>
-      <p><strong>{{instaDatas.name}}</strong> {{instaDatas.content}}</p>
-      <p class="date">May 15</p>
+      <p>{{instaData.likes}}</p>
+      <p><strong>{{instaData.name}}</strong> {{instaData.content}}</p>
+      <p class="date">{{instaData.date}}</p>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>
 export default {
-  name: 'post',
+  name: 'Post',
   props: {
-    instaDatas: Object,
-  },
-};
+    instaData: Object,
+  }
+}
 </script>
 
 <style>
@@ -29,7 +33,7 @@ export default {
   width: 100%;
 }
 .profile {
-  /* background-image: url("https://placeimg.com/100/100/arch"); */
+  background-image: url("https://placeimg.com/100/100/arch");
   width: 30px;
   height: 30px;
   background-size: 100%;
@@ -62,5 +66,5 @@ export default {
   font-size: 11px;
   color: grey;
   margin-top: -8px;
-}
+} 
 </style>

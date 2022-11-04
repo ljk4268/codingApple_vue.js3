@@ -1,38 +1,84 @@
 <template>
-  <div class="header">
-    <ul class="header-button-left">
-      <li>Cancel</li>
-    </ul>
-    <ul class="header-button-right">
-      <li>Next</li>
-    </ul>
-    <img src="./assets/logo.png" class="logo" />
+  <div>
+    <div class="header">
+      <ul class="header-button-left">
+        <li>Cancel</li>
+      </ul>
+      <ul class="header-button-right">
+        <li v-if="step == 1" @click="step++;">Next</li>
+        <li v-if="step == 2" @click="publish">발행</li>
+      </ul>
+      <img src="./assets/logo.png" class="logo" />
+    </div>
+
+    <Container 
+      :instaDatas="instaDatas"
+      :step="step" 
+      :imgUrl="imgUrl"
+      @sendText="text = $event"
+      />
+    <button @click="more">더보기</button>
+
+    <div class="footer">
+      <ul class="footer-button-plus">
+        <input @change="upload" type="file" id="file" class="inputfile" />
+        <label for="file" class="input-plus">+</label>
+      </ul>
+    </div>
   </div>
 
-  <ContainerBox :instaDatas="instaDatas"/>
 
-  <div class="footer">
-    <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
-      <label for="file" class="input-plus">+</label>
-    </ul>
-  </div>
 </template>
 
 <script>
-import ContainerBox from './components/ContainerBox.vue';
+import axios from 'axios';
+import Container from './components/Container.vue';
 import instaDatas from './assets/instaDatas';
+axios.get()
 
 export default {
   name: 'App',
   data(){
-    return{
+    return {
+      text: '',
+      imgUrl: '',
+      step: 0,
       instaDatas: instaDatas,
+      check: 0,
     }
   },
   components: {
-    ContainerBox
-  }
+    Container,
+  },
+  methods: {
+    more(){
+        axios.get(`https://codingapple1.github.io/vue/more${this.check}.json`)
+        .then( result => {
+          this.instaDatas.push(result.data);
+          this.check ++;
+        })
+    },
+    upload(e){
+      let file = e.target.files;
+      this.imgUrl = URL.createObjectURL(file[0]);
+      console.log(this.imgUrl)
+      this.step++;
+    },
+    publish(){
+      let 내게시물 = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imgUrl,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.text,
+        filter: "perpetua"
+      }
+      this.instaDatas.unshift(내게시물);
+      this.step = 0;
+    }
+  },
 }
 </script>
 
