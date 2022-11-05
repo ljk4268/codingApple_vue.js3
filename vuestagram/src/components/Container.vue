@@ -13,11 +13,11 @@
   <div v-if="step == 1">
     <div class="upload-image" :style="{backgroundImage:`url(${imgUrl})`}"></div>
     <div class="filters">
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
+      <FilterBox 
+        :imgUrl="imgUrl"
+        :filter="filter"
+        v-for="filter in filters" :key="filter"
+        ></FilterBox>
     </div>
   </div>
   
@@ -38,9 +38,17 @@
 
 <script>
 import Post from './Post.vue';
+import FilterBox from './FilterBox.vue';
 
 export default {
   name: 'Container',
+  data(){
+    return {
+      filters : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+    }
+  },
   props: {
     instaDatas : Array,
     step: Number,
@@ -48,6 +56,7 @@ export default {
   },
   components: {
     Post,
+    FilterBox,
   },
 }
 </script>
