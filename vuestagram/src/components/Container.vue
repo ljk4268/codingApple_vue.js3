@@ -17,7 +17,9 @@
         :imgUrl="imgUrl"
         :filter="filter"
         v-for="filter in filters" :key="filter"
-        ></FilterBox>
+      >
+        <span>{{filter}}</span>
+      </FilterBox>
     </div>
   </div>
   

@@ -1,10 +1,18 @@
 <template>
-  <div :class="`${filter} filter-item`" :style="{backgroundImage:`url(${imgUrl})`}"></div> 
+  <div :class="`${filter} filter-item`" :style="{backgroundImage:`url(${imgUrl})`}">
+    <slot></slot>
+  </div>
+  
 </template>
 
 <script>
 export default {
   name: 'filterbox',
+  data(){
+    return {
+      msg : 'hello'
+    }
+  },
   props: {
     imgUrl: String,
     filter: String,
