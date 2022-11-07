@@ -12,6 +12,9 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
+    <h4>안녕 {{ $store.state.name }}</h4>
+    <button>버튼</button>
+
     <Container 
       :instaDatas="instaDatas"
       :step="step" 
