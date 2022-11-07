@@ -46,7 +46,14 @@ export default {
       step: 0,
       instaDatas: instaDatas,
       check: 0,
+      filter: '',
+      선택한필터: '',
     }
+  },
+  mounted(){
+    this.emitter.on( 'filterClick', (a)=>{
+      this.선택한필터 = a;
+    });
   },
   components: {
     Container,
@@ -74,7 +81,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.text,
-        filter: "perpetua"
+        filter: this.선택한필터,
       }
       this.instaDatas.unshift(내게시물);
       this.step = 0;

@@ -8,6 +8,7 @@
       <span class="profile-name">{{instaData.name}}</span>
     </div>
     <div 
+      :class="`${filter}`"
       class="post-body"
       :style="{backgroundImage: `url(${instaData.postImage})`}"
       ></div>
@@ -24,6 +25,7 @@ export default {
   name: 'Post',
   props: {
     instaData: Object,
+    filter: String,
   }
 }
 </script>
