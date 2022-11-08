@@ -11,9 +11,10 @@
       :class="`${filter}`"
       class="post-body"
       :style="{backgroundImage: `url(${instaData.postImage})`}"
+      @click="$store.commit('changeLikes')"
       ></div>
     <div class="post-content">
-      <p>{{instaData.likes}}</p>
+      <p>{{$store.state.likes}} likes</p>
       <p><strong>{{instaData.name}}</strong> {{instaData.content}}</p>
       <p class="date">{{instaData.date}}</p>
     </div>

@@ -12,8 +12,9 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <h4>안녕 {{ $store.state.name }}</h4>
-    <button>버튼</button>
+    <h4>안녕 {{ $store.state.name }} {{ $store.state.age }}</h4>
+    <button @click="$store.commit('chageName')">버튼</button>
+    <button @click="$store.commit('addAge',10)">나이버튼</button>
 
     <Container 
       :instaDatas="instaDatas"
