@@ -14,7 +14,7 @@
       @click="$store.commit('changeLikes')"
       ></div>
     <div class="post-content">
-      <p>{{$store.state.likes}} likes</p>
+      <p>{{$store.state.likes}} Likes</p>
       <p><strong>{{instaData.name}}</strong> {{instaData.content}}</p>
       <p class="date">{{instaData.date}}</p>
     </div>

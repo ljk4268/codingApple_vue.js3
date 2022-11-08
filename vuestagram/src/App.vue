@@ -16,6 +16,9 @@
     <button @click="$store.commit('chageName')">버튼</button>
     <button @click="$store.commit('addAge',10)">나이버튼</button>
 
+    <p>{{ $store.state.more }}</p>
+    <button @click="$store.dispatch('getData')">더보기</button>
+
     <Container 
       :instaDatas="instaDatas"
       :step="step" 

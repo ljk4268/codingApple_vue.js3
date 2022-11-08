@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 const store = createStore({
   state(){
@@ -7,6 +8,7 @@ const store = createStore({
       age: 20,
       likes: 30,
       likesClick: false,
+      more: {},
     }
   },
   mutations: {
@@ -23,7 +25,17 @@ const store = createStore({
       } else {
         state.likes --;
       }
-
+    },
+    setMore(state, data){
+      state.more = data
+    }
+  },
+  actions: {
+    getData(context){
+      axios.get('https://codingapple1.github.io/vue/more0.json').then((a)=>{
+        console.log(a.data);
+        context.commit('setMore', a.data)
+      })
     }
   }
 })
