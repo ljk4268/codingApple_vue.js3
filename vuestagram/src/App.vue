@@ -12,9 +12,11 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
+    <p>{{내이름}} {{age}} {{likes}}</p>
+
     <h4>안녕 {{ $store.state.name }} {{ $store.state.age }}</h4>
     <button @click="$store.commit('chageName')">버튼</button>
-    <button @click="$store.commit('addAge',10)">나이버튼</button>
+    <button @click="addAge(10)">나이버튼</button>
 
     <p>{{ $store.state.more }}</p>
     <button @click="$store.dispatch('getData')">더보기</button>
@@ -25,7 +27,7 @@
       :imgUrl="imgUrl"
       @sendText="text = $event"
       />
-    <button @click="more">더보기</button>
+    <!-- <button @click="more">더보기</button> -->
 
     <div class="footer">
       <ul class="footer-button-plus">
@@ -40,6 +42,7 @@
 
 <script>
 import axios from 'axios';
+import {mapMutations, mapState} from 'vuex';
 import Container from './components/Container.vue';
 import instaDatas from './assets/instaDatas';
 axios.get()
@@ -65,7 +68,15 @@ export default {
   components: {
     Container,
   },
+  computed: {
+    name(){
+      return this.$store.state.name;
+    },
+    ...mapState(['name','age','likes']),
+    ...mapState({ 내이름:'name', }),
+  },
   methods: {
+    ...mapMutations(['setMore', 'changeLikes', 'addAge']),
     more(){
         axios.get(`https://codingapple1.github.io/vue/more${this.check}.json`)
         .then( result => {
