@@ -12,14 +12,14 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <p>{{내이름}} {{age}} {{likes}}</p>
+    <!-- <p>{{내이름}} {{age}} {{likes}}</p>
 
     <h4>안녕 {{ $store.state.name }} {{ $store.state.age }}</h4>
     <button @click="$store.commit('chageName')">버튼</button>
     <button @click="addAge(10)">나이버튼</button>
 
     <p>{{ $store.state.more }}</p>
-    <button @click="$store.dispatch('getData')">더보기</button>
+    <button @click="$store.dispatch('getData')">더보기</button> -->
 
     <Container 
       :instaDatas="instaDatas"
@@ -53,7 +53,7 @@ export default {
     return {
       text: '',
       imgUrl: '',
-      step: 0,
+      step: 3,
       instaDatas: instaDatas,
       check: 0,
       filter: '',
